@@ -1,0 +1,1 @@
+console.log("bg scrip-t loaded");

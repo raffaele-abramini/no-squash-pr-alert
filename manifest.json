@@ -1,0 +1,19 @@
+{
+  "name": "Non-squashed merges alert for Github",
+  "version": "1.0",
+  "description": "Alert if user is not squashing",
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "permissions": [
+    "activeTab"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://github.com/*/pull/*"],
+      "js": ["contentScript.js"]
+    }
+  ],
+  "manifest_version": 2
+}
