@@ -1,1 +1,1 @@
-console.log("bg scrip-t loaded");
+console.log("bg script loaded");
