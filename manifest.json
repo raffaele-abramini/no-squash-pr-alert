@@ -1,7 +1,7 @@
 {
   "name": "Non-squashed merges alert for Github",
   "version": "1.0",
-  "description": "Alert if user is not squashing",
+  "description": "Alert if user is merging a PR without squashing commits",
   "background": {
     "scripts": ["background.js"],
     "persistent": false
