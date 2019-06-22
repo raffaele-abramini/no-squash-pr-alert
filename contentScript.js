@@ -1,14 +1,20 @@
 (() => {
-  const mergeWithoutSquashButton = document.querySelector('.btn-group-merge .js-details-target');
-  const message = "Are you sure you want to merge this PR WITHOUT squashing your commits?";
+  console.log('Non-squashed merge ALERT! is active');
 
-  if (!mergeWithoutSquashButton) {
+  const mergeButton = document.querySelector('.btn-group-merge button');
+  const rebaseButton = document.querySelector('.btn-group-rebase button');
+  const message = 'Are you sure you want to merge this PR WITHOUT squashing your commits?';
+
+  if (!mergeButton) {
     return;
   }
 
-  mergeWithoutSquashButton.addEventListener("click", (e) => {
+  const mergeAlertCb = e => {
     if (!window.confirm(message)) {
       e.stopImmediatePropagation();
     }
-  });
+  };
+
+  mergeButton.addEventListener('click', mergeAlertCb, false);
+  rebaseButton.addEventListener('click', mergeAlertCb, false);
 })();
