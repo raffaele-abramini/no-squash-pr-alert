@@ -4,12 +4,15 @@
   "author": "Raffaele Abramini",
   "description": "Alert if user is merging a PR without squashing commits for Github",
   "background": {
-    "scripts": ["background.js"],
+    "scripts": ["dynamicContentScripts.js", "background.js"],
     "persistent": false
   },
   "permissions": [
-    "activeTab"
+    "activeTab",
+    "contextMenus",
+    "https://github.com/*"
   ],
+  "optional_permissions": ["http://*/*", "https://*/*"],
   "content_scripts": [
     {
       "matches": ["https://github.com/*/pull/*"],
