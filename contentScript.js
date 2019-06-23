@@ -27,7 +27,6 @@ const noSquashedPrAlertService = {
 
   getMessageFromConfig() {
     chrome.storage.sync.get(['message'], (items) => {
-      debugger;
       if (items.message) {
         this.message = items.message;
       } else {
