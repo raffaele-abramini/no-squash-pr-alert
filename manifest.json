@@ -1,6 +1,6 @@
 {
   "name": "Non-squashed merge ALERT!",
-  "version": "1.0",
+  "version": "1.1",
   "author": "Raffaele Abramini",
   "description": "Alert if user is merging a PR without squashing commits for Github",
   "background": {
@@ -10,8 +10,13 @@
   "permissions": [
     "activeTab",
     "contextMenus",
-    "https://github.com/*"
+    "storage"
   ],
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": false
+  },
+  "options_page": "options.html",
   "optional_permissions": ["http://*/*", "https://*/*"],
   "content_scripts": [
     {

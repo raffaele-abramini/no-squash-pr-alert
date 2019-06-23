@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Test Extension Options</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body>
+
+<div class="row">
+  <form class="col s12">
+    <div class="input-field col s12">
+      <textarea
+          placeholder="Placeholder"
+          id="message"
+          class="materialize-textarea"
+          style="height: 80px;"
+      >
+      </textarea>
+      <label class="active" for="message">Alert message</label>
+    </div>
+    <div class="col s12" id="optionSaved" style="display: none; margin-bottom: 16px;">
+      <div id="status">Option saved</div>
+    </div>
+    <div class="col s12">
+      <button id="save" class="waves-effect waves-light btn" type="button">Save</button>
+    </div>
+  </form>
+</div>
+
+
+<script src="options.js"></script>
+</body>
+</html>
