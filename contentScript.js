@@ -1,20 +1,47 @@
-(() => {
-  console.log('Non-squashed merge ALERT! is active');
+const noSquashedPrAlertService = {
+  defaultMessage: 'Are you sure you want to merge this PR WITHOUT squashing your commits?',
+  message: undefined,
+  domElements: {
+    mergeButton: undefined,
+    rebaseButton: undefined,
+  },
 
-  const mergeButton = document.querySelector('.btn-group-merge button');
-  const rebaseButton = document.querySelector('.btn-group-rebase button');
-  const message = 'Are you sure you want to merge this PR WITHOUT squashing your commits?';
+  init() {
+    this.domElements = {
+      mergeButton: document.querySelector('.btn-group-merge button'),
+      rebaseButton: document.querySelector('.btn-group-rebase button'),
+    }
+    this.getMessageFromConfig();
+    this.addListeners();
+  },
 
-  const mergeAlertCb = e => {
-    if (!window.confirm(message)) {
+  addListeners() {
+    const { mergeButton, rebaseButton } = this.domElements;
+    if (mergeButton) {
+      mergeButton.addEventListener('click', this.mergeAlertCb.bind(this), false);
+    }
+    if (rebaseButton) {
+      rebaseButton.addEventListener('click', this.mergeAlertCb.bind(this), false);
+    }
+  },
+
+  getMessageFromConfig() {
+    chrome.storage.sync.get(['message'], (items) => {
+      debugger;
+      if (items.message) {
+        this.message = items.message;
+      } else {
+        this.message = this.defaultMessage;
+        chrome.storage.sync.set({ message: this.defaultMessage })
+      }
+    });
+  },
+
+  mergeAlertCb(e) {
+    if (!window.confirm(this.message)) {
       e.stopImmediatePropagation();
     }
-  };
+  },
+};
 
-  if (!mergeButton) {
-    mergeButton.addEventListener('click', mergeAlertCb, false);
-  }
-  if (!mergeButton) {
-    rebaseButton.addEventListener('click', mergeAlertCb, false);
-  }
-})();
+noSquashedPrAlertService.init();

@@ -8,3 +8,4 @@ GitHub Enterprise is also supported. To enable it, click on the extension while 
 then click `Enable Non-squashed merge ALERT!`.
 
 ![The alert in action](./demo.gif)
+
