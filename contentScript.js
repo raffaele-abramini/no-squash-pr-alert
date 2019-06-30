@@ -7,22 +7,21 @@ const noSquashedPrAlertService = {
   },
 
   init() {
-    this.domElements = {
-      mergeButton: document.querySelector('.btn-group-merge button'),
-      rebaseButton: document.querySelector('.btn-group-rebase button'),
-    }
+    this.domElements = [
+      '.btn-group-merge .js-details-target',
+      '.btn-group-rebase .js-details-target'
+    ];
+
     this.getMessageFromConfig();
     this.addListeners();
   },
 
   addListeners() {
-    const { mergeButton, rebaseButton } = this.domElements;
-    if (mergeButton) {
-      mergeButton.addEventListener('click', this.mergeAlertCb.bind(this), false);
-    }
-    if (rebaseButton) {
-      rebaseButton.addEventListener('click', this.mergeAlertCb.bind(this), false);
-    }
+    document.addEventListener(
+      'click',
+      this.handleOnClick.bind(this),
+      { capture: true }
+    );
   },
 
   getMessageFromConfig() {
@@ -36,10 +35,16 @@ const noSquashedPrAlertService = {
     });
   },
 
-  mergeAlertCb(e) {
-    if (!window.confirm(this.message)) {
-      e.stopImmediatePropagation();
-    }
+  handleOnClick(e) {
+    this.domElements.forEach((elem) => {
+      if (!e.target.matches(elem)) {
+        return;
+      }
+
+      if (!window.confirm(this.message)) {
+        e.stopImmediatePropagation();
+      }
+    });
   },
 };
 

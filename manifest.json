@@ -20,7 +20,7 @@
   "optional_permissions": ["http://*/*", "https://*/*"],
   "content_scripts": [
     {
-      "matches": ["https://github.com/*/pull/*"],
+      "matches": ["https://github.com/*"],
       "js": ["contentScript.js"]
     }
   ],
